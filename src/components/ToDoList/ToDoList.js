@@ -16,10 +16,11 @@ const ToDoList = ({todos}) => {
     });
 
     return (
-        <ul className='list-group todo-list'>
-            {listItems}
-        </ul>
-
+        <div className= 'todo-list-block'>
+            <ul className='list-group todo-list'>
+                {listItems}
+            </ul>
+        </div>
     );
 };
 export default ToDoList;

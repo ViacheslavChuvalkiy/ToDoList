@@ -1,4 +1,24 @@
-.todo-list-item{
-    display: block;
+.todo-list-item-block{
+    display: flex;
+    justify-content:space-between;
 
+}
+
+.todo-list-item{
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.toDoitemIcons{
+    margin: 0 7px;
+    font-size: 16px;
+    height: 100%;
+}
+
+.toDoitemIcons:hover{
+    font-size: 20px;
+    cursor: pointer;
+    transition: font-size ease 0.3s;
 }
