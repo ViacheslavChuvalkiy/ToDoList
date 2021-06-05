@@ -4,12 +4,12 @@
     position: relative;
 }
 
-.navHeaderBlock :nth-child(3){
-     border-top-left-radius: 0.3em;
-     border-bottom-left-radius: 0.3em;
- }
+.navHeaderBlock :first-of-type{
+    border-top-left-radius: 0.3em;
+    border-bottom-left-radius: 0.3em;
+}
 
-.navHeaderBlock :nth-child(5){
+.navHeaderBlock label:not(:last-child){
     border-left: none;
     border-right: none;
 }

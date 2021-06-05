@@ -6,8 +6,7 @@
 
 .todo-list-item{
     margin-top: 2px;
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 19px;
     font-family: sans-serif;
 }
 
@@ -21,4 +20,14 @@
     font-size: 20px;
     cursor: pointer;
     transition: font-size ease 0.3s;
+}
+
+.todo-list-item-done{
+    text-decoration: line-through;
+
+}
+
+.todo-list-item-important{
+    color: steelblue;
+    font-weight: bold;
 }
