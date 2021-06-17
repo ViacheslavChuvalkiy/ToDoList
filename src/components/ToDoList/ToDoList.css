@@ -1,9 +1,9 @@
 .todo-list-block{
-    display: flex;
+    display: inline-block;
     width: 100%;
 }
 
-.todo-list .list-group-item{
+.todo-list .list-group-item .todo-list-form{
     margin-top: .45rem;
     padding: .25rem .75rem;
     box-shadow: 2px 2px rgba(0,0,0,.5);
@@ -11,4 +11,10 @@
 }
 .todo-list{
     width: 100%;
+}
+
+.todo-list-form{
+    display: flex;
+    margin-top: .75rem;
+
 }

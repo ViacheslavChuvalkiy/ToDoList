@@ -3,41 +3,11 @@ import './ToDoItem.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 
-export default class extends Component{
-
-    state = {
-        done: false,
-        important: false
-    };
-
-    onClickLabel = () => {
-
-        let done = !this.state.done;
-
-        this.setState({
-            done
-        });
-
-    };
-
-    onClickImportant = () => {
-
-        let important = !this.state.important;
-
-        this.setState({
-            important
-        });
-
-    };
-
-    onClickDelete = () => {
-
-    };
+export default class TodoItem extends Component{
 
     render()
     {
-        const {label} = this.props;
-        const {done,important}  = this.state;
+        const {label,onClickDelete,onClickImportant,onClickDone,done,important} = this.props;
 
         let classNames = 'todo-list-item';
 
@@ -52,20 +22,20 @@ export default class extends Component{
             <div className='todo-list-item-block'>
                 <span
                     className = {classNames}
-                    onClick={this.onClickLabel}>
+                    onClick={onClickDone}>
                     {label}
                 </span>
                 <div className='todo-list-item-icons'>
                     <FontAwesomeIcon
                         icon={['fas', 'trash-alt']}
                         className='toDoitemIcons'
-                        onClick = {this.onClickDelete}
+                        onClick = {onClickDelete}
                     />
 
                     <FontAwesomeIcon
                         icon={['fas', 'exclamation-circle']}
                         className='toDoitemIcons'
-                        onClick = {this.onClickImportant}
+                        onClick = {onClickImportant}
                     />
                 </div>
             </div>
