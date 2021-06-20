@@ -15,7 +15,9 @@ export default class App extends Component{
             this.createTodoItem("Drink tea"),
             this.createTodoItem("Drink coffee"),
             this.createTodoItem("Drink cola")
-        ]
+        ],
+        term: '',
+        filter: 'all' //active, all, done
     };
 
     onClickDelete = (id) => {
@@ -32,20 +34,11 @@ export default class App extends Component{
 
     };
 
-    onClickAdd = () => {
-
-        let inputAddTodo = document.getElementById('nameAddTodoItem');
-        let todoName = inputAddTodo.value;
-
-        if(!todoName){
-            return;
-        };
-
-        inputAddTodo.value ='';
+    onClickAdd = (text) => {
 
         let toDoDate = this.state.toDoDate;
 
-        let newItem = this.createTodoItem(todoName);
+        let newItem = this.createTodoItem(text);
 
         toDoDate.push(newItem);
 
@@ -81,6 +74,7 @@ export default class App extends Component{
 
         elArray.done = !elArray.done;
 
+
         this.setState({
             toDoDate
         });
@@ -95,16 +89,70 @@ export default class App extends Component{
 
     };
 
+    search(items, term){
+
+        if(term.length === 0){
+            return items;
+        }
+
+         return items.filter((item) => {
+             return item.label
+                    .toLowerCase()
+                    .indexOf(term.term.toLowerCase()) > -1
+             });
+        };
+
+
+    onFilter(items, filter){
+
+        switch (filter) {
+            case 'all':
+                return items;
+            case 'active':
+                return items.filter((item) => !item.done);
+            case 'done':
+                return items.filter((item) => item.done);
+            default:
+                return items;
+        }
+
+    };
+
+
+    onSearchChange = (term) => {
+
+        this.setState({
+           term
+        });
+
+    };
+
+    onFilterChange = (filter) => {
+
+        this.setState({
+            filter
+        });
+
+    };
+
     render() {
 
-        const {toDoDate}  = this.state;
+        const {toDoDate,term,filter}  = this.state;
+
+        const visiableItems = this.onFilter(
+            this.search(toDoDate,term),
+            filter);
 
         return (
             <div className='container todo-container'>
-                <AppHeader toDoDate={toDoDate}/>
-                <AppNav/>
+                <AppHeader toDoDate={visiableItems}/>
+                <AppNav
+                    filter = {filter}
+                    onSearchChange = {this.onSearchChange}
+                    onFilterChange = {this.onFilterChange}
+                />
                 <ToDoList
-                    todos={toDoDate}
+                    todos={visiableItems}
                     onClickDelete={this.onClickDelete}
                     onClickAdd = {this.onClickAdd}
                     onClickImportant = {this.onClickImportant}

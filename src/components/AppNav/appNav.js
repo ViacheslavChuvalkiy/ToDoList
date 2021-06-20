@@ -1,18 +1,64 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './appNav.css';
 
-const AppNav = () => {
-    return (
-        <div className='navHeaderBlock'>
-        <input className='navSearchInput form-control' type="text" placeholder='search' />
-        <input className='navFilterInput btn-check' type="radio" name='filterToDo' value='all' id="option1" autoComplete= 'off'/>
-            <label className="btn btn-secondary navFilterLabel activeFilter" htmlFor="option1">All</label>
-        <input className='navFilterInput btn-check' type="radio" name='filterToDo' value='active'  autoComplete= 'off'/>
-            <label className="btn btn-secondary navFilterLabel" htmlFor="option1">Active</label>
-        <input className='navFilterInput btn-check' type="radio" name='filterToDo' value='done' autoComplete= 'off'/>
-            <label className="btn btn-secondary navFilterLabel" htmlFor="option1">Done</label>
-        </div>
-    )
+export default class AppNav extends Component{
+
+    state = {
+        term: '',
+        filter : ''
+    };
+
+    buttons = [
+        {name: 'all', label: 'all'},
+        {name: 'active', label: 'active'},
+        {name: 'done', label: 'done'}
+
+    ];
+
+    onChangeSeacrhInput = (e) => {
+
+        const term = e.target.value;
+
+        this.setState({term});
+
+        this.props.onSearchChange({term});
+
+    };
+
+
+    render() {
+
+        const {filter,onFilterChange} = this.props;
+
+        const buttons = this.buttons.map(({name,label}) =>{
+
+            const isActive = filter === name;
+
+            const clazz = isActive ? 'btn-info' : 'btn-outline-secondary';
+
+            return (
+                <button type="button"
+                        className = {`btn ${clazz}`}
+                        key={name}
+                        onClick={ () => onFilterChange(name) }
+                >
+                    {label}
+                </button>
+            )
+
+            });
+
+        return (
+            <div className='navHeaderBlock'>
+                <input className='navSearchInput form-control'
+                       type="text"
+                       placeholder='search'
+                       onChange={this.onChangeSeacrhInput}
+                       value={this.state.term}
+                />
+                {buttons}
+            </div>
+        )
+    }
 };
 
-export default AppNav;

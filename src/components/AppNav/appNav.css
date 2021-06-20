@@ -24,19 +24,4 @@
 
 }
 
-.navFilterInput{
-    display: none;
-}
-
-.navFilterLabel{
-    display: block;
-    float: right;
-    margin-bottom: 0;
-    border-radius: 0;
-    color: dimgrey;
-    background-color: white;
-}
-.activeFilter{
-    background-color: #17b0b8;
-}
 

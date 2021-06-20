@@ -13,7 +13,7 @@
     width: 100%;
 }
 
-.todo-list-form{
+.item-add-form{
     display: flex;
     margin-top: .75rem;
 
